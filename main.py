@@ -1,12 +1,13 @@
 from fourmi import Fourmiliere
 import sys
 
+FILE="four\\fourmiliere_quatre.txt"
 
-def charger_fichier(path):
+def charger_fichier(path ,nb_fourmis):
     """
     Charge une fourmilière depuis un fichier texte.
     """
-    nb_fourmis = 0
+    
     salles = []
     tunnels = []
 
@@ -18,7 +19,7 @@ def charger_fichier(path):
 
             # nombre de fourmis
             if line.startswith("f="):
-                nb_fourmis = int(line.split("=")[1].strip())
+                nb_fourmis_f = int(line.split("=")[1].strip())
                 continue
 
             # tunnel
@@ -47,12 +48,10 @@ def charger_fichier(path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python main.py <fichier_fourmiliere.txt>")
-        sys.exit(1)
 
-    path = sys.argv[1]
-    fourmiliere = charger_fichier(path)
+    nb_fourmis = 10
+    path = FILE
+    fourmiliere = charger_fichier(path, nb_fourmis)
 
 
     print(f"=== Simulation pour {path} ===")

@@ -96,11 +96,8 @@ def visualiser(fourmiliere, logs):
 # Point d'entrée
 # ================
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python visual.py <fichier_fourmiliere.txt>")
-        sys.exit(1)
 
-    path = sys.argv[1]
+    path = "four\\fourmiliere_quatre.txt"
     fourmiliere = charger_fichier(path)
     logs = fourmiliere.simuler()
 
