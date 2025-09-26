@@ -18,12 +18,22 @@ class SimpleApp(tk.Tk):
 
         # Tkinter variable juste pour l'affichage du champ texte
         self.nb_fourmis_var = tk.StringVar(value="10")
+        self.nb_fourmi_check = tk.BooleanVar(value=False)
 
         # Interface
         tk.Button(self, text="Choisir un fichier", command=self.select_file).pack(pady=10)
+        checkbox = tk.Checkbutton(
+            self,
+            text="Choisir le nombre de fourmis",
+            variable=self.nb_fourmi_check,        # relie la case à la variable
+            onvalue=True,              # valeur quand cochée
+            offvalue=False             # valeur quand décochée
+        )
+        checkbox.pack(pady=10)
 
         self.file_label = tk.Label(self, text="Aucun fichier sélectionné", fg="blue", wraplength=380)
         self.file_label.pack()
+
 
         frame = tk.Frame(self)
         frame.pack(pady=10)
@@ -54,7 +64,7 @@ class SimpleApp(tk.Tk):
         self.nb_fourmis = int(nb_text)
         self.destroy()  # fermer la fenêtre
         try:
-            fourmiliere = charger_fichier(self.file_path , self.nb_fourmis)
+            fourmiliere = charger_fichier(self.file_path , self.nb_fourmis,self.nb_fourmi_check.get())
             logs = fourmiliere.simuler()
             visualiser(fourmiliere, logs)
             # print(f"Fichier chargé : {self.file_path}, nb_fourmis = {self.nb_fourmis}")

@@ -3,7 +3,7 @@ import sys
 
 FILE="four\\fourmiliere_quatre.txt"
 
-def charger_fichier(path ,nb_fourmis):
+def charger_fichier(path ,nb_fourmis,nb_fourmi_boolean):
     """
     Charge une fourmilière depuis un fichier texte.
     """
@@ -38,7 +38,10 @@ def charger_fichier(path ,nb_fourmis):
                 salles.append((line, 1))
 
     # construction de la fourmilière
-    fourmiliere = Fourmiliere(nb_fourmis)
+    if nb_fourmi_boolean :
+        fourmiliere = Fourmiliere(nb_fourmis)
+    else :
+        fourmiliere = Fourmiliere(nb_fourmis_f)
     for nom, cap in salles:
         fourmiliere.ajouter_salle(nom, cap)
     for s1, s2 in tunnels:
